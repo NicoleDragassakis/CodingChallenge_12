@@ -1,1 +1,2 @@
 # CodingChallenge_12
+This system will create a interactive drawing application which will let users choose between drawing lines,rectangles and circles. Asist in color selection, and allow drawing by clicking and dragging as well asd a button to clear the canvas.
