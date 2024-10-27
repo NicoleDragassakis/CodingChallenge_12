@@ -29,4 +29,42 @@ canvas.addEventListener('mouseout', () => {
     ctx.closePath();
 });
 
+//TASK THREE
+
+let drawing = false;
+let tool = 'line';
+let startX, startY;
+
+document.querySelectorAll('input[name="tool"]').forEach((input)=>{
+input.addEventListener('change', (event) => {
+    tool = event.target.value;
+});
+});
+
+function drawShape(currentX, currentY) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+
+    if (tool === 'line') {
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(currentX, currentY);
+        ctx.stroke();
+    } else if (tool === 'rectangle') {
+        ctx.beginPath();
+        ctx.strokeRect(
+            Math.min(startX, currentX),
+            Math.min(startY, currentY),
+            Math.abs(currentX - startX),
+            Math.abs(currentY - startY)
+        );
+        ctx.stroke();
+    } else if (tool === 'circle') {
+        ctx.beginPath();
+        const radius = Math.sqrt((currentX - startX) ** 2 + (currentY - startY) ** 2);
+        ctx.arc(startX, startY, radius, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+}
+
 
