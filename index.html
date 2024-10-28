@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Coding Challenge 12</title>
+    <link rel="stylesheet" href="interactiveapp.css">
 </head>
 <body>
     <!--TASK ONE-->
-    <h1></h1>
+    <h1>Interactive Application</h1>
     <canvas id="appCanvas" width="500" height="400"></canvas> <!--canvas element-->
 
     <!--Radio Buttons to select drawing tool-->
 
-    <p>Select a Tool!</p>
-    <input type="radio" id="option1" name="option" value="30">
-    <input type="radio" id="option2" name="option" value="30">
-    <input type="radio" id="option3" name="option" value="30">
+    <p>Select a Tool:</p>
+    <input type="radio" id="line" name="tool" value="line" checked>
+    <label for="line">Line</label>
+    <input type="radio" id="rectangle" name="tool" value="rectangle">
+    <label for="rectangle">Rectangle</label>
+    <input type="radio" id="circle" name="tool" value="circle">
+    <label for="circle">Circle</label>
 
     <!--Color input to select drawing color-->
 
-    <input type="color" id="color1" name="color1" value="#ff0000"> 
+    <input type="color" id="colorPicker" name="color" value="#ff0000"> 
 
     <!--Buttion which will clear the canvas-->
 
-    <button>Clear Canvas</button>
+    <button id="clearCanvas">Clear Canvas</button>
 
     <script src="app.js"></script>
-    <script src="interactiveapp.css"></script>
 </body>
 </html>

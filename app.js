@@ -2,43 +2,45 @@
 //TASK TWO
 
 const canvas = document.getElementById("appCanvas");
-const ctx = canvas.getContext('2d'); //For a 2d canvas drawing context
-ctx.fillStyle = "#ff0000"; //I want to add white later #FFFFFF
-ctx.fillRect(0,0, canvas.width, canvas.height);
+const ctx = canvas.getContext('2d');
+let drawing = false;
+let tool = 'line';
+let startX, startY;
+let color = "#000000";
 
-// event listeners for mouse events to handle drawing
+ctx.fillStyle = "#ff0000";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 canvas.addEventListener('mousedown', (event) => {
     drawing = true;
-    ctx.beginPath();
-    ctx.moveTo(event.offsetX, event.offsetY);
+    startX = event.offsetX;
+    startY = event.offsetY;
 });
+
 canvas.addEventListener('mousemove', (event) => {
     if (drawing) {
-        ctx.strokeStyle = color;
-        ctx.lineTo(event.offsetX, event.offsetY);
-        ctx.stroke();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        drawShape(event.offsetX, event.offsetY);
     }
 });
+
 canvas.addEventListener('mouseup', () => {
     drawing = false;
     ctx.closePath();
 });
+
 canvas.addEventListener('mouseout', () => {
     drawing = false;
     ctx.closePath();
-});
+})
 
 //TASK THREE
 
-let drawing = false;
-let tool = 'line';
-let startX, startY;
-
-document.querySelectorAll('input[name="tool"]').forEach((input)=>{
-input.addEventListener('change', (event) => {
-    tool = event.target.value;
-});
+document.querySelectorAll('input[name="tool"]').forEach((input) => {
+    input.addEventListener('change', (event) => {
+        tool = event.target.value;
+    });
 });
 
 function drawShape(currentX, currentY) {
@@ -67,4 +69,14 @@ function drawShape(currentX, currentY) {
     }
 }
 
+//TASK FOUR
+const colorPicker = document.getElementById('colorPicker');
+const clearCanvasBtn = document.getElementById('clearCanvas');
 
+colorPicker.addEventListener('input', (event) => {
+    color = event.target.value;
+});
+
+clearCanvasBtn.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
