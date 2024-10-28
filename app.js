@@ -8,7 +8,7 @@ let tool = 'line';
 let startX, startY;
 let color = "#000000";
 let shapes= []; //this will store shapes which will allow the canvas to retain the previous edits
-ctx.fillStyle = "#ff0000";
+ctx.fillStyle = "#FFFFFF";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 canvas.addEventListener('mousedown', (event) => {

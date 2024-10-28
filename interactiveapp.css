@@ -1,0 +1,20 @@
+body {
+    background-color: #F090f0; /* Change the baclground */
+    margin: 0; 
+    font-family: Arial, sans-serif; /*Changed font */
+}
+
+#appCanvas { /* added a border to the canvas*/
+    border: 5px solid #000000;
+    display: block; 
+    margin: 20px auto; 
+}
+
+button{
+    background-color: #FF09ff; /* button color */ 
+}
+
+button:hover {
+    background-color: #800080; /* Darker shade for hover*/
+} 
+
