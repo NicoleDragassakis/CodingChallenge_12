@@ -7,7 +7,7 @@ let drawing = false;
 let tool = 'line';
 let startX, startY;
 let color = "#000000";
-
+let shapes= []; //this will store shapes which will allow the canvas to retain the previous edits
 ctx.fillStyle = "#ff0000";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -19,9 +19,7 @@ canvas.addEventListener('mousedown', (event) => {
 
 canvas.addEventListener('mousemove', (event) => {
     if (drawing) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        drawShape(event.offsetX, event.offsetY);
+        drawShape(event.offsetX, event.offsetY, true); // Draw the current shape
     }
 });
 
@@ -43,7 +41,13 @@ document.querySelectorAll('input[name="tool"]').forEach((input) => {
     });
 });
 
-function drawShape(currentX, currentY) {
+function drawShape(currentX, currentY, isPreview) {
+    if (isPreview) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        shapes.forEach(shape => shape()); 
+    }
+    
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
 
@@ -66,6 +70,10 @@ function drawShape(currentX, currentY) {
         const radius = Math.sqrt((currentX - startX) ** 2 + (currentY - startY) ** 2);
         ctx.arc(startX, startY, radius, 0, Math.PI * 2);
         ctx.stroke();
+    }
+
+    if (!isPreview) {
+        shapes.push(() => drawShape(currentX, currentY, false)); //pushes the shapes in order to store them
     }
 }
 
